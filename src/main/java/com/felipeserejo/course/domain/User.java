@@ -2,6 +2,7 @@ package com.felipeserejo.course.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table (name = "tb_user")
 public class User implements Serializable {
@@ -20,19 +22,11 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String email;
     private String password;
     private String phone;
-
-    public User(int id, String name, String email, String password, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-    }
 
     public User(){
     }
@@ -42,7 +36,7 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return Objects.equals(id, user.id);
     }
 
     @Override
